@@ -20,8 +20,7 @@ namespace CheeseMVC.Controllers
 
         public IActionResult Index()
         {
-            context.Categories.ToList();
-            return View(context);
+            return View(context.Categories.ToList());
         }
 
         public IActionResult Add()
