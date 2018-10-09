@@ -34,15 +34,15 @@ namespace CheeseMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View(addCategoryViewModel);
-            }
-            else
-            {
                 CheeseCategory newCategory = new CheeseCategory();
                 newCategory.Name = addCategoryViewModel.Name;
                 context.Categories.Add(newCategory);
                 context.SaveChanges();
-                return Redirect("/Category");
+                return Redirect("/Category");                
+            }
+            else
+            {
+                return View(addCategoryViewModel);
             }
         }
     }
