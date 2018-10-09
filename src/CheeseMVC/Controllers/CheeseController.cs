@@ -20,6 +20,7 @@ namespace CheeseMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            // TODO: Solve Runtime Exception Thrown here...
             IList<Cheese> cheeses = context.Cheeses.Include(c => c.Category).ToList();
 
             return View(cheeses);
@@ -28,6 +29,7 @@ namespace CheeseMVC.Controllers
         public IActionResult Add()
         {
             AddCheeseViewModel addCheeseViewModel = new AddCheeseViewModel(context.Categories.ToList());
+
             return View(addCheeseViewModel);
         }
 
@@ -43,7 +45,7 @@ namespace CheeseMVC.Controllers
                 {
                     Name = addCheeseViewModel.Name,
                     Description = addCheeseViewModel.Description,
-                    CategoryID = addCheeseViewModel.CategoryID
+                    Category = newCheeseCategory
                 };
 
                 context.Cheeses.Add(newCheese);
