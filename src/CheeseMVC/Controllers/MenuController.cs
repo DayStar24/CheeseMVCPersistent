@@ -30,5 +30,24 @@ namespace CheeseMVC.Controllers
 
             return View(addMenuViewModel);
         }
+
+        [HttpPost]
+        public IActionResult Add(AddMenuViewModel addMenuViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Menu newMenu = new Menu
+                {
+                    Name = addMenuViewModel.Name
+                };
+
+                context.Menus.Add(newMenu);
+                context.SaveChanges();
+
+                return Redirect("/Menu");
+            }
+
+            return View(addMenuViewModel);
+        }
     }
 }
